@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : Mysql
+ Source Server         : local_mysql
  Source Server Type    : MySQL
- Source Server Version : 100408
+ Source Server Version : 50730
  Source Host           : localhost:3306
  Source Schema         : mega_bangunan
 
  Target Server Type    : MySQL
- Target Server Version : 100408
+ Target Server Version : 50730
  File Encoding         : 65001
 
- Date: 15/06/2020 19:47:16
+ Date: 16/06/2020 03:13:32
 */
 
 SET NAMES utf8mb4;
@@ -80,14 +80,50 @@ INSERT INTO `dimensions` VALUES (5, 'D5', 'Tanggibles', 'Bukti Fisik', '2020-06-
 DROP TABLE IF EXISTS `kuisioners`;
 CREATE TABLE `kuisioners`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
+  `pelanggan_id` int(20) NOT NULL,
   `criteria_id` int(11) NOT NULL,
-  `kenyataan` int(11) NOT NULL,
-  `harapan` int(11) NOT NULL,
+  `kenyataan` int(11) NULL DEFAULT 0,
+  `harapan` int(11) NULL DEFAULT 0,
   `created_at` timestamp(0) NULL DEFAULT NULL,
   `updated_at` timestamp(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of kuisioners
+-- ----------------------------
+INSERT INTO `kuisioners` VALUES (1, 1, 1, 1, 1, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
+INSERT INTO `kuisioners` VALUES (2, 1, 2, 2, 0, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
+INSERT INTO `kuisioners` VALUES (3, 1, 3, 2, 0, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
+INSERT INTO `kuisioners` VALUES (4, 1, 4, 0, 0, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
+INSERT INTO `kuisioners` VALUES (5, 1, 5, 0, 0, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
+INSERT INTO `kuisioners` VALUES (6, 1, 6, 0, 0, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
+INSERT INTO `kuisioners` VALUES (7, 1, 7, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
+INSERT INTO `kuisioners` VALUES (8, 1, 8, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
+INSERT INTO `kuisioners` VALUES (9, 1, 9, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
+INSERT INTO `kuisioners` VALUES (10, 1, 10, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
+INSERT INTO `kuisioners` VALUES (11, 1, 11, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
+INSERT INTO `kuisioners` VALUES (12, 1, 12, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
+INSERT INTO `kuisioners` VALUES (13, 1, 13, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
+INSERT INTO `kuisioners` VALUES (14, 1, 14, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
+INSERT INTO `kuisioners` VALUES (15, 1, 15, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
+INSERT INTO `kuisioners` VALUES (16, 1, 16, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
+INSERT INTO `kuisioners` VALUES (17, 2, 1, 1, 2, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
+INSERT INTO `kuisioners` VALUES (18, 2, 2, 2, 3, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
+INSERT INTO `kuisioners` VALUES (19, 2, 3, 3, 2, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
+INSERT INTO `kuisioners` VALUES (20, 2, 4, 3, 2, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
+INSERT INTO `kuisioners` VALUES (21, 2, 5, 4, 1, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
+INSERT INTO `kuisioners` VALUES (22, 2, 6, 2, 1, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
+INSERT INTO `kuisioners` VALUES (23, 2, 7, 3, 1, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
+INSERT INTO `kuisioners` VALUES (24, 2, 8, 3, 2, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
+INSERT INTO `kuisioners` VALUES (25, 2, 9, 3, 2, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
+INSERT INTO `kuisioners` VALUES (26, 2, 10, 3, 1, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
+INSERT INTO `kuisioners` VALUES (27, 2, 11, 3, 3, '2020-06-15 18:03:32', '2020-06-15 18:03:32');
+INSERT INTO `kuisioners` VALUES (28, 2, 12, 4, 2, '2020-06-15 18:03:32', '2020-06-15 18:03:32');
+INSERT INTO `kuisioners` VALUES (29, 2, 13, 4, 2, '2020-06-15 18:03:32', '2020-06-15 18:03:32');
+INSERT INTO `kuisioners` VALUES (30, 2, 14, 3, 2, '2020-06-15 18:03:32', '2020-06-15 18:03:32');
+INSERT INTO `kuisioners` VALUES (31, 2, 15, 4, 3, '2020-06-15 18:03:32', '2020-06-15 18:03:32');
+INSERT INTO `kuisioners` VALUES (32, 2, 16, 2, 2, '2020-06-15 18:03:32', '2020-06-15 18:03:32');
 
 -- ----------------------------
 -- Table structure for migrations
@@ -108,6 +144,27 @@ INSERT INTO `migrations` VALUES (2, '2020_06_15_063744_create_roles_table', 1);
 INSERT INTO `migrations` VALUES (3, '2020_06_15_065018_create_dimensions_table', 2);
 INSERT INTO `migrations` VALUES (4, '2020_06_15_065052_create_criterias_table', 2);
 INSERT INTO `migrations` VALUES (5, '2020_06_15_124232_create_kuisioners_table', 3);
+
+-- ----------------------------
+-- Table structure for pelanggans
+-- ----------------------------
+DROP TABLE IF EXISTS `pelanggans`;
+CREATE TABLE `pelanggans`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `alamat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `no_tlp` bigint(13) NULL DEFAULT NULL,
+  `saran` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of pelanggans
+-- ----------------------------
+INSERT INTO `pelanggans` VALUES (1, NULL, NULL, NULL, NULL, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
+INSERT INTO `pelanggans` VALUES (2, 'Nazmudin', 'jakarta', 809909090, NULL, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
 
 -- ----------------------------
 -- Table structure for roles
