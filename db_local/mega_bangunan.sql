@@ -11,7 +11,7 @@
  Target Server Version : 100408
  File Encoding         : 65001
 
- Date: 15/06/2020 19:40:44
+ Date: 15/06/2020 19:47:16
 */
 
 SET NAMES utf8mb4;
@@ -75,6 +75,21 @@ INSERT INTO `dimensions` VALUES (4, 'D4', 'Empathy', 'Empati', '2020-06-15 10:22
 INSERT INTO `dimensions` VALUES (5, 'D5', 'Tanggibles', 'Bukti Fisik', '2020-06-15 10:23:06', '2020-06-15 10:23:06');
 
 -- ----------------------------
+-- Table structure for kuisioners
+-- ----------------------------
+DROP TABLE IF EXISTS `kuisioners`;
+CREATE TABLE `kuisioners`  (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `criteria_id` int(11) NOT NULL,
+  `kenyataan` int(11) NOT NULL,
+  `harapan` int(11) NOT NULL,
+  `created_at` timestamp(0) NULL DEFAULT NULL,
+  `updated_at` timestamp(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for migrations
 -- ----------------------------
 DROP TABLE IF EXISTS `migrations`;
@@ -83,7 +98,7 @@ CREATE TABLE `migrations`  (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of migrations
@@ -92,6 +107,7 @@ INSERT INTO `migrations` VALUES (1, '2014_10_12_000000_create_users_table', 1);
 INSERT INTO `migrations` VALUES (2, '2020_06_15_063744_create_roles_table', 1);
 INSERT INTO `migrations` VALUES (3, '2020_06_15_065018_create_dimensions_table', 2);
 INSERT INTO `migrations` VALUES (4, '2020_06_15_065052_create_criterias_table', 2);
+INSERT INTO `migrations` VALUES (5, '2020_06_15_124232_create_kuisioners_table', 3);
 
 -- ----------------------------
 -- Table structure for roles
