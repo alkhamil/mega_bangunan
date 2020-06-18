@@ -10,7 +10,7 @@ class Kuisioner extends Model
     {
         $kuisioner =  Kuisioner::all();
 
-        foreach($kuisioner as $data )
+        foreach($kuisioner as $data)
         {
             $hasil['kenyataan'][$data->criteria_id][] = $data->kenyataan;
             $hasil['harapan'][$data->criteria_id][] = $data->harapan;

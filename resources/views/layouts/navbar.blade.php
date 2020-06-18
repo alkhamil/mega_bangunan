@@ -44,6 +44,12 @@
                 <span class="app-menu__label">Kriteria</span>
             </a>
         </li>
+        <li>
+            <a @if($s1 == "servqual") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('servqual') }}">
+                <i class="app-menu__icon fa fa-calculator"></i>
+                <span class="app-menu__label">Perhitungan Servqual</span>
+            </a>
+        </li>
         @endif
     </ul>
 </aside>

@@ -55,7 +55,7 @@
                                     <tr class="text-center">
                                         <th rowspan="2" style="vertical-align : middle;text-align:center;">No</th>
                                         <th rowspan="2" style="vertical-align : middle;text-align:center;">Item Kriteria</th>
-                                        <th colspan="5">Kenyataan</th>
+                                        <th colspan="5" style="border-right: 2px solid #000;">Kenyataan</th>
                                         <th colspan="5">Harapan</th>
                                     </tr>
                                     <tr class="text-center">
@@ -63,7 +63,7 @@
                                         <th>2</th>
                                         <th>3</th>
                                         <th>4</th>
-                                        <th>5</th>
+                                        <th style="border-right: 2px solid #000;">5</th>
                                         <th>1</th>
                                         <th>2</th>
                                         <th>3</th>
@@ -84,10 +84,10 @@
                                                     <th class="text-center">{{ $x + 1 }}</th>
                                                     <td>{{ $value->content }}</td>
                                                     @for ($i = 0; $i < 5; $i++)
-                                                    <td class="text-center"><input name="k[{{$value->id}}]" type="radio" value="{{ $i + 1 }}"></td>
+                                                    <td class="text-center" @if($i==4) style="border-right: 2px solid #000;" @endif><input style="cursor: pointer" name="k[{{$value->id}}]" type="radio" value="{{ $i + 1 }}"></td>
                                                     @endfor
                                                     @for ($i = 0; $i < 5; $i++)
-                                                    <td class="text-center"><input name="h[{{$value->id}}]" type="radio" value="{{ $i + 1 }}"></td>
+                                                    <td class="text-center"><input style="cursor: pointer" name="h[{{$value->id}}]" type="radio" value="{{ $i + 1 }}"></td>
                                                     @endfor
                                                 </tr>
                                                 @php

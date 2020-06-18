@@ -31,11 +31,17 @@
                 <h3 class="login-head">LOGO</h3>
                 <div class="form-group">
                     <label class="control-label">USERNAME</label>
-                    <input class="form-control" type="text" name="username" placeholder="Username" autofocus>
+                    <input class="form-control @error('username') is-invalid @enderror" type="text" name="username" placeholder="Username" autofocus>
+                    @error('username')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label class="control-label">PASSWORD</label>
-                    <input class="form-control" type="password" name="password" placeholder="Password">
+                    <input class="form-control @error('username') is-invalid @enderror" type="password" name="password" placeholder="Password">
+                    @error('password')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="form-group btn-container">
                     <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
