@@ -41,14 +41,72 @@
                                     <td>{{ $d->name }}</td>
                                     <td>{{ $d->description }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-sm">
+                                        <button data-toggle="modal" data-target="#edit-dimensi{{ $d->id }}" class="btn btn-info btn-sm">
                                             <i class="fa fa-edit"></i> Edit
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-sm">
+                                        </button>
+                                        <button data-toggle="modal" data-target="#hapus-dimensi{{ $d->id }}" class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash"></i> Hapus
-                                        </a>
+                                        </button>
                                     </td>
                                 </tr>
+
+                                <!-- Modal Edit -->
+                                <div class="modal fade" id="edit-dimensi{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="tambah-dimensiLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header bg-primary text-white">
+                                            <h5 class="modal-title" id="tambah-dimensiLabel">Form Edit Dimensi</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true" class="text-white">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="{{ route('dimensi.edit') }}" method="POST">
+                                            @csrf
+                                            <div class="modal-body">
+                                                <input type="hidden" name="dimension_id" value="{{ $d->id }}">
+                                                <div class="form-group">
+                                                    <label>Kode Dimensi</label>
+                                                    <input type="text" name="code" value="{{ $d->code }}" class="form-control" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Nama Dimensi</label>
+                                                    <input type="text" name="name" value="{{ $d->name }}" class="form-control" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Keterangan</label>
+                                                    <textarea name="description" class="form-control" cols="10" rows="5" required>{{ $d->description }}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal Hapus -->
+                                <div class="modal fade" id="hapus-dimensi{{ $d->id }}" tabindex="-1" role="dialog" aria-labelledby="tambah-dimensiLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                        <div class="modal-header bg-primary text-white">
+                                            <h5 class="modal-title" id="tambah-dimensiLabel">Hapus Dimensi {{ $d->name }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true" class="text-white">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h4>Apakah anda yakin ingin <br> menghapus data ini ?</h4>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <a href="{{ route('dimensi.hapus', $d->id) }}" class="btn btn-primary">Hapus</a>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             @endforeach
                         </tbody>
                     </table>
@@ -58,39 +116,39 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Add -->
 <div class="modal fade" id="tambah-dimensi" tabindex="-1" role="dialog" aria-labelledby="tambah-dimensiLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-    <div class="modal-header bg-primary text-white">
-        <h5 class="modal-title" id="tambah-dimensiLabel">Form Tambah Dimensi</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true" class="text-white">&times;</span>
-        </button>
-    </div>
-    <form action="{{ route('dimensi.tambah') }}" method="POST">
-        @csrf
-        <div class="modal-body">
-            <div class="form-group">
-                <label>Kode Dimensi</label>
-                <input type="text" name="code" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label>Nama Dimensi</label>
-                <input type="text" name="name" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label>Keterangan</label>
-                <textarea name="description" class="form-control" cols="10" rows="5" required></textarea>
-            </div>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="tambah-dimensiLabel">Form Tambah Dimensi</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="text-white">&times;</span>
+            </button>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save changes</button>
+        <form action="{{ route('dimensi.tambah') }}" method="POST">
+            @csrf
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Kode Dimensi</label>
+                    <input type="text" name="code" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Nama Dimensi</label>
+                    <input type="text" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Keterangan</label>
+                    <textarea name="description" class="form-control" cols="10" rows="5" required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
         </div>
-    </form>
     </div>
-</div>
 </div>
 @endsection
 

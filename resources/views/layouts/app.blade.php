@@ -27,6 +27,8 @@
     <script type="text/javascript" src="{{ url('assets/js/plugins/jquery.dataTables.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('assets/js/plugins/dataTables.bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('assets/js/plugins/select2.min.js') }}"></script>
+    <script src="{{ url('assets/js/plugins/gijgo/gijgo.min.js') }}" type="text/javascript"></script>
+    <link href="{{ url('assets/js/plugins/gijgo/gijgo.min.css') }}" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
         $('#sampleTable').DataTable();
         $('#select2').select2();

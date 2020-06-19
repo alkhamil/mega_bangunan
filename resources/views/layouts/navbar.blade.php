@@ -21,27 +21,33 @@
     <ul class="app-menu">
         <li>
             <a @if($s1 == "/" || $s1 == "dashboard") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('dashboard') }}">
-                <i class="app-menu__icon fa fa-dashboard"></i>
-                <span class="app-menu__label">Dashboard</span>
+                <i class="app-menu__icon fa fa-home"></i>
+                <span class="app-menu__label">Home</span>
             </a>
         </li>
         @if ($auth->role_id == 1)
         <li>
             <a @if($s1 == "user") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('user') }}">
-                <i class="app-menu__icon fa fa-user"></i>
-                <span class="app-menu__label">User</span>
+                <i class="app-menu__icon fa fa-user-circle-o"></i>
+                <span class="app-menu__label">Managemen User</span>
             </a>
         </li>
         <li>
             <a @if($s1 == "dimensi") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('dimensi') }}">
                 <i class="app-menu__icon fa fa-book"></i>
-                <span class="app-menu__label">Dimensi</span>
+                <span class="app-menu__label">Managemen Dimensi</span>
             </a>
         </li>
         <li>
-            <a @if($s1 == "kriteria") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('kriteria') }}">
+            <a @if($s1 == "pernyataan") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('pernyataan') }}">
                 <i class="app-menu__icon fa fa-tag"></i>
-                <span class="app-menu__label">Kriteria</span>
+                <span class="app-menu__label">Managemen Pernyataan</span>
+            </a>
+        </li>
+        <li>
+            <a @if($s1 == "responden") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('responden') }}">
+                <i class="app-menu__icon fa fa-users"></i>
+                <span class="app-menu__label">Daftar Responden</span>
             </a>
         </li>
         <li>

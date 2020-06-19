@@ -15,13 +15,22 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/user', 'UserCtrl@index')->name('user.index');
     Route::post('/user/tambah', 'UserCtrl@tambah')->name('user.tambah');
+    Route::post('/user/edit', 'UserCtrl@edit')->name('user.edit');
+    Route::get('/user/hapus/{id}', 'UserCtrl@hapus')->name('user.hapus');
 
     Route::get('/dimensi', 'DimensiCtrl@index')->name('dimensi.index');
     Route::post('/dimensi/tambah', 'DimensiCtrl@tambah')->name('dimensi.tambah');
+    Route::post('/dimensi/edit', 'DimensiCtrl@edit')->name('dimensi.edit');
+    Route::get('/dimensi/hapus/{id}', 'DimensiCtrl@hapus')->name('dimensi.hapus');
 
-    Route::get('/kriteria', 'KriteriaCtrl@index')->name('kriteria.index');
+    Route::get('/pernyataan', 'KriteriaCtrl@index')->name('kriteria.index');
     Route::post('/kriteria/tambah', 'KriteriaCtrl@tambah')->name('kriteria.tambah');
+    Route::post('/kriteria/edit', 'KriteriaCtrl@edit')->name('kriteria.edit');
+    Route::get('/kriteria/hapus/{id}', 'KriteriaCtrl@hapus')->name('kriteria.hapus');
     
+    Route::get('/responden', 'RespondenCtrl@index')->name('responden.index');
+    Route::get('/responden/cari', 'RespondenCtrl@cari')->name('responden.cari');
+
     Route::get('/servqual', 'ServqualCtrl@index')->name('servqual.index');
 
     Route::get('/logout', 'LoginCtrl@logout')->name('logout');

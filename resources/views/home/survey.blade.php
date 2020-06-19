@@ -6,33 +6,29 @@
       <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <div class="row justify-content-center">
-                    <div class="col-sm-12 text-center">
-                         Survey Kepuasan Pelanggan
-                    </div>
-                </div>
+                <h2 class="text-center">Survey Kepuasan Pelanggan</h2>
             </div>
             <div class="card-body">
                 <div class="row justify-content-center">
                     <form action="{{ route('survey.create') }}" method="POST">
                         @csrf
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             <div class="form-group row">
                             <label for="nama" class="col-sm-3 col-form-label">Nama Pelanggan</label>
                             <div class="col-sm-9">
-                                <input type="text" id="nama" name="nama" class="form-control"  placeholder="Nama Pelanggan">
+                                <input type="text" id="nama" name="nama" class="form-control"  placeholder="Nama Pelanggan" required>
                             </div>
                             </div>
                             <div class="form-group row">
                             <label for="alamat" class="col-sm-3 col-form-label">Alamat</label>
                             <div class="col-sm-9">
-                                <textarea name="alamat" id="alamat" name="alamat" class="form-control"></textarea>
+                                <textarea name="alamat" id="alamat" name="alamat" class="form-control" required></textarea>
                             </div>
                             </div>
                             <div class="form-group row">
                                 <label for="hp" class="col-sm-3 col-form-label">No telpon</label>
                                 <div class="col-sm-9">
-                                    <input type="number" id="hp" name="hp" class="form-control"  placeholder="Nomot telpon">
+                                    <input type="number" id="hp" name="hp" class="form-control"  placeholder="Nomot telpon" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -43,12 +39,12 @@
                             </div>
                         </div>
                         <div class="col-sm-12">
-                            <div class="pb-2">
-                                <span class="badge badge-info">1</span> <small class="">sangat tidak penting</small>
-                                <span class="badge badge-info">2</span> <small class="">tidak penting</small>
-                                <span class="badge badge-info">3</span> <small class="">netral</small>
-                                <span class="badge badge-info">4</span> <small class="">penting</small>
-                                <span class="badge badge-info">5</span> <small class="">sangat penting</small>
+                            <div class="pb-2 mt-2 mb-2">
+                                <span class="badge badge-info">1</span> <small class="">Sangat Tidak Penting</small>
+                                <span class="badge badge-info">2</span> <small class="">Tidak Penting</small>
+                                <span class="badge badge-info">3</span> <small class="">Netral</small>
+                                <span class="badge badge-info">4</span> <small class="">Penting</small>
+                                <span class="badge badge-info">5</span> <small class="">Sangat Penting</small>
                             </div>
                             <table class="table table-bordered">
                                 <thead class="bg-light">
@@ -84,10 +80,10 @@
                                                     <th class="text-center">{{ $x + 1 }}</th>
                                                     <td>{{ $value->content }}</td>
                                                     @for ($i = 0; $i < 5; $i++)
-                                                    <td class="text-center" @if($i==4) style="border-right: 2px solid #000;" @endif><input style="cursor: pointer" name="k[{{$value->id}}]" type="radio" value="{{ $i + 1 }}"></td>
+                                                    <td class="text-center" @if($i==4) style="border-right: 2px solid #000;" @endif><input style="cursor: pointer" name="k[{{$value->id}}]" type="radio" value="{{ $i + 1 }}" required></td>
                                                     @endfor
                                                     @for ($i = 0; $i < 5; $i++)
-                                                    <td class="text-center"><input style="cursor: pointer" name="h[{{$value->id}}]" type="radio" value="{{ $i + 1 }}"></td>
+                                                    <td class="text-center"><input style="cursor: pointer" name="h[{{$value->id}}]" type="radio" value="{{ $i + 1 }}" required></td>
                                                     @endfor
                                                 </tr>
                                                 @php
@@ -104,7 +100,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="komentar">Komentar / Saran</label>
-                                <textarea name="komentar" name="komentar" class="form-control" placeholder="Tulis komentar dan saran..." rows="5"></textarea>
+                                <textarea name="komentar" name="komentar" class="form-control" placeholder="Tulis komentar dan saran..." rows="5" required></textarea>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-success">
