@@ -6,10 +6,8 @@
       <div class="col-md-12">
         <div class="card">
             <div class="card-body">
-              <h4 class="text-center">Selamat datang di website kami.</h4>
-              <hr>
               <p class="text-center">
-                Webiste ini bertujuan untuk membantu para pelanggan menilai kami.
+                contact
               </p>
             </div>
         </div>

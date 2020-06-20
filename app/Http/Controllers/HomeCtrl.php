@@ -49,6 +49,20 @@ class HomeCtrl extends Controller
     public function feedback()
     {
         return view('home.feedback');
+    }
 
+    public function contact()
+    {
+        return view('home.contact');
+    }
+
+    public function profile()
+    {
+        return view('home.profile');
+    }
+
+    public function about()
+    {
+        return view('home.about');
     }
 }

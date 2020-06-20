@@ -31,6 +31,17 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="col-md-8">
+                            <div class="row justify-content-center px-5 py-5">
+                                <div class="col-md-12">
+                                    <div class="card" style="border: dashed">
+                                        <div class="card-body">
+                                            <h4>Total responden {{ count($respondens) }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -58,11 +69,8 @@
                                     <td>{{ $r->nama }}</td>
                                     <td>{{ date('d M Y H:i:s', strtotime($r->created_at)) }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-info btn-sm">
-                                            <i class="fa fa-edit"></i> Edit
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-sm">
-                                            <i class="fa fa-trash"></i> Hapus
+                                        <a href="{{ route('responden.view', encrypt($r->id)) }}" class="btn btn-info btn-sm">
+                                            <i class="fa fa-eye"></i> Lihat Hasil
                                         </a>
                                     </td>
                                 </tr>

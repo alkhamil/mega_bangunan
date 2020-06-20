@@ -9,14 +9,19 @@
     <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
     <!-- Navbar Right Menu-->
     <div class="ml-auto">
-        <a href="{{ route('logout') }}" class="btn btn-danger btn-sm mt-2">Logout</a>
+        <button class="btn btn-info btn-sm mt-2" id="datetime"></button>
+        <a href="{{ route('logout') }}" class="btn btn-danger btn-sm mt-2">
+            <i class="fa fa-power-off"></i> Logout
+        </a>
     </div>
 </header>
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
     <div class="text-center">
-        <p class="text-white text-bold">{{ Str::upper($auth->username) }}</p>
+        <p class="text-white">
+            <i class="fa fa-circle text-success"></i>  {{ Str::upper($auth->username) }}
+        </p>
     </div>
     <ul class="app-menu">
         <li>
@@ -54,6 +59,12 @@
             <a @if($s1 == "servqual") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('servqual') }}">
                 <i class="app-menu__icon fa fa-calculator"></i>
                 <span class="app-menu__label">Perhitungan Servqual</span>
+            </a>
+        </li>
+        <li>
+            <a @if($s1 == "laporan") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('laporan') }}">
+                <i class="app-menu__icon fa fa-file"></i>
+                <span class="app-menu__label">Laporan</span>
             </a>
         </li>
         @endif

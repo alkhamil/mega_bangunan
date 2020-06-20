@@ -14,11 +14,12 @@ class ServqualCtrl extends Controller
         $kuisioner = new Kuisioner;
         $dimensi = new Dimension;
 
-        $nilai = $kuisioner->servqual();
-        $nilaiDimensi = $kuisioner->dimensiNilai();
+        $nilai = $kuisioner->servqual(null);
+        $nilaiDimensi = $kuisioner->dimensiNilai(null);
+        $keterangan = $kuisioner;
         $criteria = Criteria::all();
         $dimensi = Dimension::with(['criteria'])->get();
 
-        return view('servqual.index', compact('criteria', 'nilai', 'dimensi', 'nilaiDimensi'));
+        return view('servqual.index', compact('criteria', 'nilai', 'dimensi', 'nilaiDimensi','keterangan'));
     }
 }

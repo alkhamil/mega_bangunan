@@ -1,3 +1,6 @@
+@php
+    $uri = Request::segment(1);
+@endphp
 <head>
     <title>Kuningan Mega Bangunan</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -8,22 +11,22 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">Kuningan Mega Bangunan</a>
+        <a class="navbar-brand" href="{{ url('/') }}">Kuningan Mega Bangunan</a>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Profile</a>
+          <li class="nav-item">
+            <a class="nav-link @if($uri == "profile") text-warning @else text-white @endif" href="{{ url('profile') }}">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link @if($uri == "contact") text-warning @else text-white @endif" href="{{ url('contact') }}">Contact</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link @if($uri == "about") text-warning @else text-white @endif" href="{{ url('about') }}">About</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="{{ url('survey')}}">Survey</a>
+              <a class="nav-link @if($uri == "survey") text-warning @else text-white @endif" href="{{ url('survey')}}">Survey</a>
           </li>
           <li>
-              <a href="{{ url('login') }}"><button class="btn btn-success">Login</button></a>
+              <a class="ml-3" href="{{ url('login') }}"><button class="btn btn-success">Login</button></a>
           </li>
         </ul>
       </div>

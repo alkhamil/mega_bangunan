@@ -11,7 +11,7 @@
  Target Server Version : 50730
  File Encoding         : 65001
 
- Date: 16/06/2020 03:13:32
+ Date: 21/06/2020 00:30:51
 */
 
 SET NAMES utf8mb4;
@@ -92,22 +92,6 @@ CREATE TABLE `kuisioners`  (
 -- ----------------------------
 -- Records of kuisioners
 -- ----------------------------
-INSERT INTO `kuisioners` VALUES (1, 1, 1, 1, 1, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
-INSERT INTO `kuisioners` VALUES (2, 1, 2, 2, 0, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
-INSERT INTO `kuisioners` VALUES (3, 1, 3, 2, 0, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
-INSERT INTO `kuisioners` VALUES (4, 1, 4, 0, 0, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
-INSERT INTO `kuisioners` VALUES (5, 1, 5, 0, 0, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
-INSERT INTO `kuisioners` VALUES (6, 1, 6, 0, 0, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
-INSERT INTO `kuisioners` VALUES (7, 1, 7, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
-INSERT INTO `kuisioners` VALUES (8, 1, 8, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
-INSERT INTO `kuisioners` VALUES (9, 1, 9, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
-INSERT INTO `kuisioners` VALUES (10, 1, 10, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
-INSERT INTO `kuisioners` VALUES (11, 1, 11, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
-INSERT INTO `kuisioners` VALUES (12, 1, 12, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
-INSERT INTO `kuisioners` VALUES (13, 1, 13, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
-INSERT INTO `kuisioners` VALUES (14, 1, 14, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
-INSERT INTO `kuisioners` VALUES (15, 1, 15, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
-INSERT INTO `kuisioners` VALUES (16, 1, 16, 0, 0, '2020-06-15 17:57:15', '2020-06-15 17:57:15');
 INSERT INTO `kuisioners` VALUES (17, 2, 1, 1, 2, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
 INSERT INTO `kuisioners` VALUES (18, 2, 2, 2, 3, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
 INSERT INTO `kuisioners` VALUES (19, 2, 3, 3, 2, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
@@ -163,7 +147,6 @@ CREATE TABLE `pelanggans`  (
 -- ----------------------------
 -- Records of pelanggans
 -- ----------------------------
-INSERT INTO `pelanggans` VALUES (1, NULL, NULL, NULL, NULL, '2020-06-15 17:57:14', '2020-06-15 17:57:14');
 INSERT INTO `pelanggans` VALUES (2, 'Nazmudin', 'jakarta', 809909090, NULL, '2020-06-15 18:03:31', '2020-06-15 18:03:31');
 
 -- ----------------------------
@@ -206,8 +189,18 @@ CREATE TABLE `users`  (
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES (1, 1, 'admin', 'admin@email.com', '$2y$10$ab0LRmbICjbVWSvIJQz/pugMysGdWk/pk6xd8PHcfWe0MO.RWNqd6', '2020-06-15 13:48:54', '2020-06-15 13:49:03');
-INSERT INTO `users` VALUES (2, 2, 'staff', 'staff@email.com', '$2y$10$RkqgmUfJf9fzDlnVj9EozugAXI09nZAuDZVhOpCCSoTZSIIKl9kry', '2020-06-15 13:48:58', '2020-06-15 13:49:06');
 INSERT INTO `users` VALUES (3, 3, 'pelanggan', 'pelanggan@email.com', '$2y$10$3WcAOwQpkpyEvbh2cUuDx.KekK7KaDdD7FAswi5rVVs8YHJm7W1/a', '2020-06-15 13:49:00', '2020-06-15 13:49:09');
 INSERT INTO `users` VALUES (4, 2, 'nazmudin', 'nazmudin@imaniprima.com', '$2y$10$z6IfN..8YQp9DxXqeF88A.vqmjjDkL2vmWmOcqaMm4fJ3Z86tX/GC', '2020-06-15 11:21:49', '2020-06-15 11:21:49');
+
+-- ----------------------------
+-- Triggers structure for table pelanggans
+-- ----------------------------
+DROP TRIGGER IF EXISTS `kuisioner`;
+delimiter ;;
+CREATE TRIGGER `kuisioner` AFTER DELETE ON `pelanggans` FOR EACH ROW BEGIN
+	DELETE FROM kuisioners WHERE pelanggan_id = OLD.id;
+END
+;;
+delimiter ;
 
 SET FOREIGN_KEY_CHECKS = 1;

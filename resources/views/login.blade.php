@@ -28,7 +28,9 @@
         <div class="login-box">
             <form class="login-form" action="{{ route('login.proses') }}" method="POST">
                 @csrf
-                <h3 class="login-head">LOGO</h3>
+                <h3 class="login-head">
+                    <img src="{{ url('assets/images/logo.png') }}" width="50">
+                </h3>
                 <div class="form-group">
                     <label class="control-label">USERNAME</label>
                     <input class="form-control @error('username') is-invalid @enderror" type="text" name="username" placeholder="Username" autofocus>
