@@ -190,8 +190,6 @@
             return generateColor;
         }
     });
-
-
    
-    </script>
+</script>
 @endsection
