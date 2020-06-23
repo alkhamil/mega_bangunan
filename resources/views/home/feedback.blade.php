@@ -12,13 +12,16 @@
                   Pendapat anda sangat berarti bagi kami untuk meningkatkan pelayanan.
                 </p>
                 <div class="text-center">
-                  <img src="{{ url('assets/images/logo.png') }}" class="img-fluid" width="100" alt="">
+                  <img src="{{ url('assets/images/mgb.jpeg') }}" class="img-fluid" width="300" alt="">
                 </div>
                 <p class="text-center">
                   <br> Hormat kami, <br><br>
                   Management <br> 
                   Kuningan Mega Bangunan
                 </p>
+                <div class="text-center">
+                  <a class="btn btn-primary" href="{{ url('/') }}">Kembali Ke Home</a>
+                </div>
             </div>
         </div>
       </div>

@@ -41,11 +41,11 @@
                             </div>
                             <div class="col-sm-12">
                                 <div class="pb-2 mt-2 mb-2">
-                                    <span class="badge badge-info">1</span> <small class="">Sangat Tidak Penting</small>
-                                    <span class="badge badge-info">2</span> <small class="">Tidak Penting</small>
-                                    <span class="badge badge-info">3</span> <small class="">Netral</small>
-                                    <span class="badge badge-info">4</span> <small class="">Penting</small>
-                                    <span class="badge badge-info">5</span> <small class="">Sangat Penting</small>
+                                    <span class="badge badge-info">1</span> <small class="">Tidak Puas</small>
+                                    <span class="badge badge-info">2</span> <small class="">Kurang Puas</small>
+                                    <span class="badge badge-info">3</span> <small class="">Cukup Puas</small>
+                                    <span class="badge badge-info">4</span> <small class="">Puas</small>
+                                    <span class="badge badge-info">5</span> <small class="">Sangat Puas</small>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
