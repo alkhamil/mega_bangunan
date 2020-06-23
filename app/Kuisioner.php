@@ -23,6 +23,21 @@ class Kuisioner extends Model
         return $hasil;
     }
 
+    public function rekapituasi($param = null)
+    {
+        $data = $this->getKriteria($param);
+        
+        foreach($data as $key => $value)
+        {
+           foreach($value as $id => $db)
+           {
+               $hasil[$key][$id] = array_count_values($db);
+           }
+        }
+        
+        return $hasil;
+    }
+
     public function servqual($param = null)
     {
         $data = $this->getKriteria($param);
@@ -51,15 +66,13 @@ class Kuisioner extends Model
             $rataH = 0;
             foreach($data->criteria as $dt)
             {
-                $bobotK += $kriteria['bobotkenyataan'][$dt->id]; 
                 $rataK += $kriteria['ratakenyataan'][$dt->id]; 
-                $bobotH += $kriteria['bobotharapan'][$dt->id]; 
                 $rataH += $kriteria['rataharapan'][$dt->id]; 
 
-                $hasil['bobotkenyataan'][$data->id] = $bobotK;   
-                $hasil['ratakenyataan'][$data->id] = number_format($rataK, 2);   
-                $hasil['bobotharapan'][$data->id] = $bobotH;   
-                $hasil['rataharapan'][$data->id] = number_format($rataH, 2);   
+                $hasil['bobotkenyataan'][$data->id] = $rataK;   
+                $hasil['ratakenyataan'][$data->id] = number_format($rataK/ count($data->criteria), 2);   
+                $hasil['bobotharapan'][$data->id] = $rataH;   
+                $hasil['rataharapan'][$data->id] = number_format($rataH/ count($data->criteria), 2);   
             }
         }
 
@@ -69,7 +82,7 @@ class Kuisioner extends Model
     public function keterangan($a)
     {
         if($a < 0){
-            $ket = 'Sangat tidak puas';
+            $ket = 'Tidak puas';
         }
         if($a == 0){
             $ket = 'Cukup puas ';
