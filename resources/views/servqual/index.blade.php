@@ -14,6 +14,65 @@
     <div class="col-md-12">
         <div class="tile">
             <div class="tile-body">
+                <span class="d-block p-2 bg-primary text-white">Tabel rekapitulasi kuesioner</span>
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="bg-light">
+                            <tr class="text-center">
+                                <th rowspan="2" style="vertical-align : middle;text-align:center;">No</th>
+                                <th rowspan="2" style="vertical-align : middle;text-align:center;">Item Kriteria</th>
+                                <th colspan="5" style="border-right: 2px solid #000;">Kenyataan</th>
+                                <th colspan="5">Harapan</th>
+                            </tr>
+                            <tr class="text-center">
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th style="border-right: 2px solid #000;">5</th>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $x = 0;
+                            @endphp
+                            @foreach ($dimensi as $key => $d)
+                                <tr>
+                                    <td class="bg-dark text-white" colspan="12">Dimensi {{ $d->name }} ({{ $d->description }})</td>
+                                </tr>
+                                    @foreach ($d->criteria as $no => $value)
+                                        <tr>
+                                            <th class="text-center">{{ $x + 1 }}</th>
+                                            <td>{{ $value->content }}</td>
+                                            @for ($i = 0; $i < 5; $i++)
+                                            <td class="text-center" @if($i==4) style="border-right: 2px solid #000;" @endif>
+                                                {{ isset($rekap['kenyataan'][$value->id][$i + 1]) ? $rekap['kenyataan'][$value->id][$i + 1] : 0 }}
+                                            </td>
+                                            @endfor
+                                            @for ($i = 0; $i < 5; $i++)
+                                            <td class="text-center">
+                                                {{ isset($rekap['harapan'][$value->id][$i +1]) ? $rekap['harapan'][$value->id][$i + 1] : 0 }}
+                                            </td>
+                                            @endfor
+                                        </tr>
+                                        @php
+                                        $x++; 
+                                        @endphp
+                                    @endforeach
+                                    @php
+                                        $x= $x;
+                                    @endphp  
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <br>
                 <span class="d-block p-2 bg-primary text-white">Nilai Rata - Rata Gap 5 berdasarkan pertanyaan</span>
                 <br>
                 <div class="table-responsive">
