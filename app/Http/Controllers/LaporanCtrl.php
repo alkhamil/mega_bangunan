@@ -31,7 +31,7 @@ class LaporanCtrl extends Controller
         $nilai = $kuisioner->servqual();
         foreach($criteria as $key => $data){
             $hasil[$key]['id'] = $data->id;
-            $hasil[$key]['nilai'] = $nilai['ratakenyataan'][$data->id] - $nilai['rataharapan'][$data->id];
+            $hasil[$key]['nilai'] = number_format($nilai['ratakenyataan'][$data->id] - $nilai['rataharapan'][$data->id], 2);
             $hasil[$key]['ket'] = $data->content;
         }
 
@@ -46,7 +46,7 @@ class LaporanCtrl extends Controller
         $nilai = $kuisioner->dimensiNilai();
         foreach($dimensi as $key => $data){
             $hasil[$key]['id'] = $data->id;
-            $hasil[$key]['nilai'] = $nilai['ratakenyataan'][$data->id] - $nilai['rataharapan'][$data->id];
+            $hasil[$key]['nilai'] = number_format($nilai['ratakenyataan'][$data->id] - $nilai['rataharapan'][$data->id], 2);
             $hasil[$key]['name'] = $data->name .'('. $data->description .')';
         }
 
