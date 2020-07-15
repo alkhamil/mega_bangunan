@@ -3,44 +3,62 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Kuisioner extends Model
 {
-    public function getKriteria($param)
+    public function getKriteria($param, $req)
     {
         if ($param !== null) {
             $kuisioner =  Kuisioner::where('pelanggan_id', $param)->get();
+            $c =  Criteria::all();
+        }if($req !== null){
+            $dari = date('Y-m-d', strtotime($req->dari));
+            $sampai = date('Y-m-d', strtotime($req->sampai));
+            
+            $kuisioner = Kuisioner::whereBetween(DB::raw('DATE(created_at)'), array($dari, $sampai))->get();
+            $c =  Criteria::all();
         }else {
             $kuisioner =  Kuisioner::all();
+            $c =  Criteria::all();
         }
 
-        foreach($kuisioner as $data)
-        {
-            $hasil['kenyataan'][$data->criteria_id][] = $data->kenyataan;
-            $hasil['harapan'][$data->criteria_id][] = $data->harapan;
+        if(count($kuisioner)){
+            foreach($kuisioner as $data)
+            {
+                $hasil['kenyataan'][$data->criteria_id][] = $data->kenyataan;
+                $hasil['harapan'][$data->criteria_id][] = $data->harapan;
+            }
+
+        }else{
+            foreach($c as $data)
+            {
+                $hasil['kenyataan'][$data->id][] = 0;
+                $hasil['harapan'][$data->id][] =  0;
+            }
         }
 
         return $hasil;
     }
 
-    public function rekapituasi($param = null)
+    public function rekapituasi($param = null, $req)
     {
-        $data = $this->getKriteria($param);
+        $data = $this->getKriteria($param, $req);
         
         foreach($data as $key => $value)
         {
            foreach($value as $id => $db)
            {
                $hasil[$key][$id] = array_count_values($db);
-           }
+           }    
         }
         
         return $hasil;
     }
 
-    public function servqual($param = null)
+    public function servqual($param = null, $req)
     {
-        $data = $this->getKriteria($param);
+        $data = $this->getKriteria($param, $req);
         
         foreach($data['kenyataan'] as $key => $db)
         {
@@ -53,9 +71,9 @@ class Kuisioner extends Model
         return $hasil;
     }
 
-    public function dimensiNilai($param = null)
+    public function dimensiNilai($param = null, $req)
     {   
-        $kriteria = $this->servqual($param);
+        $kriteria = $this->servqual($param, $req);
         $dimensi = Dimension::with(['criteria'])->get();
 
         foreach($dimensi as $data)

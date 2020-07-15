@@ -30,6 +30,14 @@
                 <span class="app-menu__label">Home</span>
             </a>
         </li>
+        @if ($auth->role_id == 3)
+        <li>
+            <a @if($s1 == "user") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('survey') }}">
+                <i class="app-menu__icon fa fa-file"></i>
+                <span class="app-menu__label">Survey</span>
+            </a>
+        </li>
+        @endif
         @if ($auth->role_id == 1)
         <li>
             <a @if($s1 == "user") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('user') }}">
@@ -61,8 +69,16 @@
                 <span class="app-menu__label">Perhitungan Servqual</span>
             </a>
         </li>
+        @endif
+        @if ($auth->role_id == 4)
         <li>
-            <a @if($s1 == "laporan") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('laporan') }}">
+            <a @if($s2 == "rekapitulasi") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('laporan/rekapitulasi') }}">
+                <i class="app-menu__icon fa fa-file"></i>
+            <span class="app-menu__label">Rekapitulasi</span>
+            </a>
+        </li>
+        <li>
+            <a @if($s1 == "laporan" && $s2 =="") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('laporan') }}">
                 <i class="app-menu__icon fa fa-file"></i>
                 <span class="app-menu__label">Laporan</span>
             </a>

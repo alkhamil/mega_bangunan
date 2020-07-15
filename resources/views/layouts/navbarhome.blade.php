@@ -21,10 +21,10 @@
           </li>
           <li class="nav-item">
               <a class="nav-link @if($uri == "about") text-warning @else text-white @endif" href="{{ url('about') }}">About</a>
-          </li>
+          {{-- </li>
           <li class="nav-item">
               <a class="nav-link @if($uri == "survey") text-warning @else text-white @endif" href="{{ url('survey')}}">Survey</a>
-          </li>
+          </li> --}}
           <li>
               <a class="ml-3" href="{{ url('login') }}"><button class="btn btn-success">Login</button></a>
           </li>
