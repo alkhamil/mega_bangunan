@@ -4,6 +4,10 @@
 <style>
     
 </style>
+@php
+ $dari = isset($_GET['dari']) ? $_GET['dari'] : null;   
+ $sampai = isset($_GET['sampai']) ? $_GET['sampai'] : null;    
+@endphp
 <div class="app-title">
     <div>
         <h1>Laporan</h1>
@@ -16,10 +20,56 @@
 <div class="row">
     <div class="col-md-12">
         <div class="tile">
+            <form action="{{ route('laporan.cari') }}" method="GET">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Dari</label>
+                            <input type="text" id="dari" name="dari" @isset($qDari) @if ($qDari !== null) value="{{ $qDari }}" @endif @endisset class="form-control" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label>Sampai</label>
+                            <input type="text" id="sampai" name="sampai" @isset($qSampai) @if ($qSampai !== null) value="{{ $qSampai }}" @endif @endisset class="form-control" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-search"></i> Cari
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
             <section id="tabs" class="project-tab">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
+                            <h3 class="title-head mt-5">Responden</h3>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-hover table-bordered" id="sampleTable">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nama Responden</th>
+                                            <th>Tanggal Isi Survei</th>
+                                            <th>Saran/Keluhan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($respondens as $key => $r)
+                                            <tr>
+                                                <td>{{ $key+1 }}</td>
+                                                <td>{{ $r->nama }}</td>
+                                                <td>{{ date('d M Y H:i:s', strtotime($r->created_at)) }}</td>
+                                                <td>
+                                                    {{ $r->saran }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <br>
+                            <br>
                             <nav>
                                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><b>Gap Per Pernyataan</b></a>
@@ -29,7 +79,7 @@
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                     <br>
-                                    <a href="{{ url('laporan/cetakPernyataan') }}" target="_blank"><button class="btn btn-success mb-2"><i class="fa fa-print"></i> Cetak</button></a>
+                                    <a href="{{ url('laporan/cetakPernyataan?dari='.$dari.'&sampai='.$sampai.'') }}" target="_blank"><button class="btn btn-success mb-2"><i class="fa fa-print"></i> Cetak</button></a>
                                     <span class="d-block p-2 mb-2 bg-primary text-white">Nilai Rata - Rata Gap 5 berdasarkan peryataan</span>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -67,7 +117,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                     <br>
-                                    <a href="{{ url('laporan/cetakDimensi') }}" target="_blank"><button class="btn btn-success mb-2"><i class="fa fa-print"></i> Cetak</button></a>
+                                    <a href="{{ url('laporan/cetakDimensi?dari='.$dari.'&sampai='.$sampai.'') }}" target="_blank"><button class="btn btn-success mb-2"><i class="fa fa-print"></i> Cetak</button></a>
                                     <span class="d-block p-2 mb-2 bg-primary text-white">Nilai Rata - Rata Gap 5 berdasarkan dimensi</span>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -109,8 +159,11 @@
 
 @section('script')
 <script>
-    var url = "{{url('laporan/chart')}}";
-    var url2 = "{{url('laporan/chartDimensi')}}";
+    var dari = "{{$dari}}";
+    var sampai = "{{$sampai}}";
+    var link = "{{url('')}}";
+    var url = link + '/laporan/chart?dari=' + dari + '&sampai=' + sampai;
+    var url2 = link + '/laporan/chartDimensi?dari=' + dari + '&sampai=' + sampai;
     var ctx = document.getElementById('myChart').getContext('2d');
     var ctx2 = document.getElementById('myDimensi').getContext('2d');
     var Labels = new Array();
@@ -191,5 +244,17 @@
         }
     });
    
+    $('#dari').datepicker({
+        uiLibrary: 'bootstrap4',
+        iconsLibrary: 'fontawesome',
+        format: 'dd mmm yyyy', 
+        
+    });
+    $('#sampai').datepicker({
+        uiLibrary: 'bootstrap4',
+        iconsLibrary: 'fontawesome',
+        format: 'dd mmm yyyy', 
+        
+    });
 </script>
 @endsection

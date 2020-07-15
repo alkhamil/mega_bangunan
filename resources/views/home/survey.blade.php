@@ -1,4 +1,4 @@
-@extends('layouts.navbarhome')
+@extends('layouts.app')
 
 @section('content')
 <div class="container mt-4">
@@ -103,7 +103,7 @@
                             <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="komentar">Komentar / Saran</label>
-                                    <textarea name="komentar" name="komentar" class="form-control" placeholder="Tulis komentar dan saran..." rows="5" required></textarea>
+                                    <textarea name="saran" class="form-control" placeholder="Tulis komentar dan saran..." rows="5" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success">

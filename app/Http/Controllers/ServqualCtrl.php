@@ -14,9 +14,9 @@ class ServqualCtrl extends Controller
         $kuisioner = new Kuisioner;
         $dimensi = new Dimension;
 
-        $nilai = $kuisioner->servqual(null);
-        $rekap = $kuisioner->rekapituasi(null);
-        $nilaiDimensi = $kuisioner->dimensiNilai(null);
+        $nilai = $kuisioner->servqual(null, null);
+        $rekap = $kuisioner->rekapituasi(null, null);
+        $nilaiDimensi = $kuisioner->dimensiNilai(null, null);
         $keterangan = $kuisioner;
         $criteria = Criteria::all();
         $dimensi = Dimension::with(['criteria'])->get();

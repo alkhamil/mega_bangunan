@@ -1,64 +1,71 @@
 @extends('layouts.app') @section('content')
+@php
+ $auth = Auth::user();   
+@endphp
 <div class="app-title">
     <div>
         <h1>Dashboard</h1>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small primary coloured-icon"><i class="icon fa fa-user fa-3x"></i>
-            <div class="info">
-                <h4>Users</h4>
-                <p><b>{{ $users }}</b></p>
+@if ($auth->role_id == 3)
+
+@else
+    <div class="row">
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small primary coloured-icon"><i class="icon fa fa-user fa-3x"></i>
+                <div class="info">
+                    <h4>Users</h4>
+                    <p><b>{{ $users }}</b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
+                <div class="info">
+                    <h4>Responden</h4>
+                    <p><b>{{ $respondens }}</b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small primary coloured-icon"><i class="icon fa fa-book fa-3x"></i>
+                <div class="info">
+                    <h4>Dimensi</h4>
+                    <p><b>{{ $dimensions }}</b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="widget-small primary coloured-icon"><i class="icon fa fa-tag fa-3x"></i>
+                <div class="info">
+                    <h4>Pernyataan</h4>
+                    <p><b>{{ $criterias }}</b></p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
-            <div class="info">
-                <h4>Responden</h4>
-                <p><b>{{ $respondens }}</b></p>
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <h5 class="bg-success p-2 text-white">Grafik GAP Berdasarkan Pernyataan</h5>
+            <div>
+                <canvas id="myChart" width="400" height=200"></canvas>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small primary coloured-icon"><i class="icon fa fa-book fa-3x"></i>
-            <div class="info">
-                <h4>Dimensi</h4>
-                <p><b>{{ $dimensions }}</b></p>
+    <div class="row">
+        <div class="col">
+            <hr>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <h5 class="bg-success p-2 text-white">Grafik GAP Berdasarkan Dimensi</h5>
+            <div>
+                <canvas id="myDimensi" width="400" height=200"></canvas>
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small primary coloured-icon"><i class="icon fa fa-tag fa-3x"></i>
-            <div class="info">
-                <h4>Pernyataan</h4>
-                <p><b>{{ $criterias }}</b></p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-12">
-        <h5 class="bg-success p-2 text-white">Grafik GAP Berdasarkan Pernyataan</h5>
-        <div>
-            <canvas id="myChart" width="400" height=200"></canvas>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <hr>
-    </div>
-</div>
-<div class="row mt-2">
-    <div class="col-md-12">
-        <h5 class="bg-success p-2 text-white">Grafik GAP Berdasarkan Dimensi</h5>
-        <div>
-            <canvas id="myDimensi" width="400" height=200"></canvas>
-        </div>
-    </div>
-</div>
+@endif
 @endsection
 
 @section('script')

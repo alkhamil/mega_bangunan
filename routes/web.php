@@ -41,6 +41,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/laporan', 'LaporanCtrl@index')->name('laporan.index');
     Route::get('/laporan/chart', 'LaporanCtrl@chart')->name('laporan.chart');
+    Route::get('/laporan/cari', 'LaporanCtrl@cari')->name('laporan.cari');
+    Route::get('/laporan/rekapitulasi', 'LaporanCtrl@rekapitulasi')->name('laporan.rekapitulasi');
+    Route::get('/laporan/rekapitulasiCari', 'LaporanCtrl@rekapitulasiCari')->name('laporan.rekapitulasiCari');
     Route::get('/laporan/chartDimensi', 'LaporanCtrl@chartDimensi')->name('laporan.chartDimensi');
     Route::get('/laporan/cetakPernyataan', 'LaporanCtrl@cetakPernyataan')->name('laporan.cetakPernyataan');
     Route::get('/laporan/cetakDimensi', 'LaporanCtrl@cetakDimensi')->name('laporan.cetakDimensi');
