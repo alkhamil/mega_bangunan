@@ -10,13 +10,31 @@
 			font-size: 9pt;
 		}
 	</style>
-	<center>
-		<h5>LAPORAN</h4>
-		<h6>Gap Per Dimensi</h5>
-	</center>
+	<div class="row">
+		<div class="col-md-12">
+			<h5 class="text-center">KUNINGAN MEGA BANGUNAN</h5>
+			<p class="text-center">Jl. RE Martadinata Dusun Puhun, RT.016/RW.003, Ancaran, Kec. Kuningan, Kabupaten Kuningan, Jawa Barat 45514</p>
+		</div>
+	</div>
 	<br>
 	<br>
-
+	<table>
+		<tr>
+			<td>Hari pencetakan</td>
+			<td>:</td>
+			<td>{{ date('d M Y') }}</td>
+		</tr>
+		<tr>
+			<td>Periode pencetakan</td>
+			<td>:</td>
+			<td>{{ $qDari.' s/d '.$qSampai }}</td>
+		</tr>
+		<tr>
+			<td>Daftar Responden</td>
+			<td>:</td>
+			<td>{{ $respondens }}</td>
+		</tr>
+	</table>
 	<table class='table table-bordered'>
 		<thead class="text-center">
 			<tr>
@@ -28,7 +46,7 @@
 		</thead>
 		<tbody>
             @foreach ($dimensi as $key => $item)
-            <tr>
+            <tr @if ($nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id] < 0) class="bg-warning" @endif>
                 <th class="text-center">{{ $key+1 }}</th>
                 <td>{{ $item->name }} ({{ $item->description }})</td>
                 <td class="text-center">{{ $nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id] }}</td>

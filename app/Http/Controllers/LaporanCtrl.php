@@ -95,11 +95,16 @@ class LaporanCtrl extends Controller
             $nilai = $kuisioner->servqual(null, $request);
             $nilaiDimensi = $kuisioner->dimensiNilai(null, $request);
         }
+
+        $qDari = $request->dari;
+        $qSampai = $request->sampai;
+
         $keterangan = $kuisioner;
         $criteria = Criteria::with(['dimensi'])->get();
         $dimensi = Dimension::with(['criteria'])->get();
+        $respondens = Pelanggan::all()->count();
 
-        $pdf = PDF::loadview('laporan.cetak_pernyataan', compact('criteria', 'nilai', 'dimensi', 'nilaiDimensi', 'keterangan'));
+        $pdf = PDF::loadview('laporan.cetak_pernyataan', compact('criteria', 'nilai', 'qDari', 'qSampai', 'dimensi', 'nilaiDimensi', 'keterangan', 'respondens'));
         return $pdf->stream();
     }
 
@@ -115,24 +120,34 @@ class LaporanCtrl extends Controller
             $nilai = $kuisioner->servqual(null, $request);
             $nilaiDimensi = $kuisioner->dimensiNilai(null, $request);
         }
+        $qDari = $request->dari;
+        $qSampai = $request->sampai;
         $keterangan = $kuisioner;
         $criteria = Criteria::with(['dimensi'])->get();
         $dimensi = Dimension::with(['criteria'])->get();
+        $respondens = Pelanggan::all()->count();
 
-        $pdf = PDF::loadview('laporan.cetak_dimensi', compact('criteria', 'nilai', 'dimensi', 'nilaiDimensi', 'keterangan'));
+        $pdf = PDF::loadview('laporan.cetak_dimensi', compact('criteria', 'nilai', 'qDari', 'qSampai', 'dimensi', 'nilaiDimensi', 'keterangan', 'respondens'));
         return $pdf->stream();
     }
 
-    public function rekapitulasi()
+    public function rekapitulasi(Request $request)
     {
         $kuisioner = new Kuisioner;
         $dimensi = new Dimension;
         $criteria = Criteria::all();
         $dimensi = Dimension::with(['criteria'])->get();
 
+        $dari = date('Y-m-d', strtotime($request->dari));
+        $sampai = date('Y-m-d', strtotime($request->sampai));
+
+        $qDari = $request->dari;
+        $qSampai = $request->sampai;
+        
+
         $rekap = $kuisioner->rekapituasi(null, null);
 
-        return view('laporan.rekapitulasi', compact('criteria', 'dimensi', 'rekap'));
+        return view('laporan.rekapitulasi', compact('criteria', 'qDari', 'qSampai', 'dimensi', 'rekap'));
     }
 
     public function rekapitulasiCari(Request $request)
@@ -144,6 +159,11 @@ class LaporanCtrl extends Controller
 
         $rekap = $kuisioner->rekapituasi(null, $request);
 
-        return view('laporan.rekapitulasi', compact('criteria', 'dimensi', 'rekap'));
+        $dari = date('Y-m-d', strtotime($request->dari));
+        $sampai = date('Y-m-d', strtotime($request->sampai));
+        $qDari = $request->dari;
+        $qSampai = $request->sampai;
+
+        return view('laporan.rekapitulasi', compact('criteria', 'dimensi', 'qDari', 'qSampai', 'rekap'));
     }
 }

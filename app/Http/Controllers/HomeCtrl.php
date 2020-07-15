@@ -29,7 +29,7 @@ class HomeCtrl extends Controller
         $pelanggan->nama = $request->nama;
         $pelanggan->alamat = $request->alamat;
         $pelanggan->no_tlp = $request->hp;
-        $pelanggan->saran = $request->komentar;
+        $pelanggan->saran = $request->saran;
         if($pelanggan->save()){
             foreach($criteria as $data){
                 $kuisioner = new Kuisioner;

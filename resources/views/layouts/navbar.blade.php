@@ -1,5 +1,6 @@
 @php
     $auth = Auth::user();
+    $url = Request::fullUrl();
     $s1 = Request::segment(1);
     $s2 = Request::segment(2);
 @endphp
@@ -72,13 +73,13 @@
         @endif
         @if ($auth->role_id == 4)
         <li>
-            <a @if($s2 == "rekapitulasi") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('laporan/rekapitulasi') }}">
+            <a @if($s1 == "rekapitulasi") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('rekapitulasi') }}">
                 <i class="app-menu__icon fa fa-file"></i>
             <span class="app-menu__label">Rekapitulasi</span>
             </a>
         </li>
         <li>
-            <a @if($s1 == "laporan" && $s2 =="") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('laporan') }}">
+            <a @if($s1 == "laporan") class="app-menu__item active" @else class="app-menu__item" @endif href="{{ url('laporan') }}">
                 <i class="app-menu__icon fa fa-file"></i>
                 <span class="app-menu__label">Laporan</span>
             </a>

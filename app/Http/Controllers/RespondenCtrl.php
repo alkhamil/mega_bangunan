@@ -34,8 +34,8 @@ class RespondenCtrl extends Controller
         $dimensi = new Dimension;
         $param = decrypt($id);
         $responden = Pelanggan::where('id', $param)->first();
-        $nilai = $kuisioner->servqual($param);
-        $nilaiDimensi = $kuisioner->dimensiNilai($param);
+        $nilai = $kuisioner->servqual($param, $request);
+        $nilaiDimensi = $kuisioner->dimensiNilai($param, $request);
         $keterangan = $kuisioner;
         $criteria = Criteria::all();
         $dimensi = Dimension::with(['criteria'])->get();

@@ -5,8 +5,8 @@
     
 </style>
 @php
- $dari = isset($_GET['dari']) ? $_GET['dari'] : null;   
- $sampai = isset($_GET['sampai']) ? $_GET['sampai'] : null;    
+ $dari = isset($_GET['dari']) ? $_GET['dari'] : date('d M Y');   
+ $sampai = isset($_GET['sampai']) ? $_GET['sampai'] : date('d M Y');    
 @endphp
 <div class="app-title">
     <div>
@@ -56,6 +56,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($respondens as $key => $r)
+                                            
                                             <tr>
                                                 <td>{{ $key+1 }}</td>
                                                 <td>{{ $r->nama }}</td>
@@ -99,7 +100,7 @@
                                                     // $k[] = $item->id;
                                                     $gap = $nilai['ratakenyataan'][$item->id] - $nilai['rataharapan'][$item->id];  
                                                 @endphp
-                                                    <tr>
+                                                    <tr @if ($gap < 0) class="bg-warning" @endif>
                                                         <th>{{ $key+1 }}</th>
                                                         <td>{{ $item->content }}</td>
                                                         <td>{{ $item->dimensi->name }}</td>
@@ -131,7 +132,7 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($dimensi as $key => $item)
-                                                    <tr>
+                                                    <tr @if ($nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id] < 0) class="bg-warning" @endif>
                                                         <th class="text-center">{{ $key+1 }}</th>
                                                         <td>{{ $item->name }} ({{ $item->description }})</td>
                                                         <td class="text-center">{{ $nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id] }}</td>

@@ -85,7 +85,7 @@
                                                             <td class="text-center" @if($i==4) style="border-right: 2px solid #000;" @endif><input style="cursor: pointer" name="k[{{$value->id}}]" type="radio" value="{{ $i + 1 }}" required></td>
                                                             @endfor
                                                             @for ($i = 0; $i < 5; $i++)
-                                                            <td class="text-center"><input style="cursor: pointer" name="h[{{$value->id}}]" type="radio" value="{{ $i + 1 }}" required></td>
+                                                            <td class="text-center"><input style="cursor: pointer" name="h[{{$value->id}}]" type="radio" value="{{ $i + 1 }}" @if($i==3) checked @else disabled @endif ></td>
                                                             @endfor
                                                         </tr>
                                                         @php

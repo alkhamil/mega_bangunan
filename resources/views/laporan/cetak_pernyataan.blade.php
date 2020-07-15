@@ -10,14 +10,32 @@
 			font-size: 9pt;
 		}
 	</style>
-	<center>
-		<h5>LAPORAN</h4>
-		<h6>Gap Per Pernyataan</h5>
-	</center>
+	<div class="row">
+		<div class="col-md-12">
+			<h5 class="text-center">KUNINGAN MEGA BANGUNAN</h5>
+			<p class="text-center">Jl. RE Martadinata Dusun Puhun, RT.016/RW.003, Ancaran, Kec. Kuningan, Kabupaten Kuningan, Jawa Barat 45514</p>
+		</div>
+	</div>
 	<br>
 	<br>
-
-	<table class='table table-bordered'>
+	<table>
+		<tr>
+			<td>Hari pencetakan</td>
+			<td>:</td>
+			<td>{{ date('d M Y') }}</td>
+		</tr>
+		<tr>
+			<td>Periode pencetakan</td>
+			<td>:</td>
+			<td>{{ $qDari.' s/d '.$qSampai }}</td>
+		</tr>
+		<tr>
+			<td>Daftar Responden</td>
+			<td>:</td>
+			<td>{{ $respondens }}</td>
+		</tr>
+	</table>
+	<table class='table table-sm table-bordered'>
 		<thead class="text-center">
 			<tr>
 				<th>No</th>
@@ -32,7 +50,7 @@
 			@php
 				$gap = $nilai['ratakenyataan'][$item->id] - $nilai['rataharapan'][$item->id];  
 			@endphp
-				<tr>
+				<tr @if($gap < 0) class="bg-warning" @endif>
 					<th class="text-center">{{ $key+1 }}</th>
 					<td>{{ $item->content }}</td>
 					<td>{{ $item->dimensi->name }}</td>
@@ -42,6 +60,5 @@
 			@endforeach
 		</tbody>
 	</table>
- 
 </body>
 </html>

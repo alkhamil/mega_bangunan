@@ -12,7 +12,7 @@ class Kuisioner extends Model
         if ($param !== null) {
             $kuisioner =  Kuisioner::where('pelanggan_id', $param)->get();
             $c =  Criteria::all();
-        }if($req !== null){
+        }else if($req !== null){
             $dari = date('Y-m-d', strtotime($req->dari));
             $sampai = date('Y-m-d', strtotime($req->sampai));
             
