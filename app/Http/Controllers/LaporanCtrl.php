@@ -48,7 +48,6 @@ class LaporanCtrl extends Controller
 
     public function chart(Request $request)
     {
-
         $kuisioner = new Kuisioner;
         $criteria = Criteria::all();
         if($request->dari == null){
@@ -96,13 +95,16 @@ class LaporanCtrl extends Controller
             $nilaiDimensi = $kuisioner->dimensiNilai(null, $request);
         }
 
+        $dari = date('Y-m-d', strtotime($request->dari));
+        $sampai = date('Y-m-d', strtotime($request->sampai));
         $qDari = $request->dari;
         $qSampai = $request->sampai;
+        $respondens = Pelanggan::whereBetween(DB::raw('DATE(created_at)'), array($dari, $sampai))->get()->count();
 
         $keterangan = $kuisioner;
         $criteria = Criteria::with(['dimensi'])->get();
         $dimensi = Dimension::with(['criteria'])->get();
-        $respondens = Pelanggan::all()->count();
+        
 
         $pdf = PDF::loadview('laporan.cetak_pernyataan', compact('criteria', 'nilai', 'qDari', 'qSampai', 'dimensi', 'nilaiDimensi', 'keterangan', 'respondens'));
         return $pdf->stream();
@@ -120,12 +122,14 @@ class LaporanCtrl extends Controller
             $nilai = $kuisioner->servqual(null, $request);
             $nilaiDimensi = $kuisioner->dimensiNilai(null, $request);
         }
+        $dari = date('Y-m-d', strtotime($request->dari));
+        $sampai = date('Y-m-d', strtotime($request->sampai));
         $qDari = $request->dari;
         $qSampai = $request->sampai;
+        $respondens = Pelanggan::whereBetween(DB::raw('DATE(created_at)'), array($dari, $sampai))->get()->count();
         $keterangan = $kuisioner;
         $criteria = Criteria::with(['dimensi'])->get();
         $dimensi = Dimension::with(['criteria'])->get();
-        $respondens = Pelanggan::all()->count();
 
         $pdf = PDF::loadview('laporan.cetak_dimensi', compact('criteria', 'nilai', 'qDari', 'qSampai', 'dimensi', 'nilaiDimensi', 'keterangan', 'respondens'));
         return $pdf->stream();
