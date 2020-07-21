@@ -71,6 +71,7 @@
                             </div>
                             <br>
                             <br>
+                            <a href="{{ url('laporan/cetakPernyataan?dari='.$dari.'&sampai='.$sampai.'') }}" target="_blank"><button class="btn btn-success mb-2"><i class="fa fa-print"></i> Cetak</button></a>
                             <nav>
                                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><b>Gap Per Pernyataan</b></a>
@@ -80,7 +81,6 @@
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                     <br>
-                                    <a href="{{ url('laporan/cetakPernyataan?dari='.$dari.'&sampai='.$sampai.'') }}" target="_blank"><button class="btn btn-success mb-2"><i class="fa fa-print"></i> Cetak</button></a>
                                     <span class="d-block p-2 mb-2 bg-primary text-white">Nilai Rata - Rata Gap 5 berdasarkan peryataan</span>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -118,7 +118,6 @@
                                 </div>
                                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                     <br>
-                                    <a href="{{ url('laporan/cetakDimensi?dari='.$dari.'&sampai='.$sampai.'') }}" target="_blank"><button class="btn btn-success mb-2"><i class="fa fa-print"></i> Cetak</button></a>
                                     <span class="d-block p-2 mb-2 bg-primary text-white">Nilai Rata - Rata Gap 5 berdasarkan dimensi</span>
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -162,7 +161,7 @@
 <script>
     var dari = "{{$dari}}";
     var sampai = "{{$sampai}}";
-    var link = "{{url('')}}";
+    var link = "{{url('/')}}";
     var url = link + '/laporan/chart?dari=' + dari + '&sampai=' + sampai;
     var url2 = link + '/laporan/chartDimensi?dari=' + dari + '&sampai=' + sampai;
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -175,13 +174,14 @@
     var color = new Array();
     var color2 = new Array();
 
+
     $.get(url, function(response){
-        // console.log(response.)
         response.forEach(function(data){
             Labels.push(data.id)
             Datas.push(data.nilai)
             color.push('rgba(' + colorGen () +', ' + colorGen () +',' + colorGen () +' )')
-        });
+        }); 
+
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -244,7 +244,8 @@
             return generateColor;
         }
     });
-   
+
+
     $('#dari').datepicker({
         uiLibrary: 'bootstrap4',
         iconsLibrary: 'fontawesome',

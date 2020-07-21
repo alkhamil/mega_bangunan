@@ -90,7 +90,11 @@ class LaporanCtrl extends Controller
         if($request->dari == null){
             $nilai = $kuisioner->servqual(null, null);
             $nilaiDimensi = $kuisioner->dimensiNilai(null, null);
+            $nilai = $kuisioner->servqual(null, null);
+            $nilaiDimensi = $kuisioner->dimensiNilai(null, null);
         }else{
+            $nilai = $kuisioner->servqual(null, $request);
+            $nilaiDimensi = $kuisioner->dimensiNilai(null, $request);
             $nilai = $kuisioner->servqual(null, $request);
             $nilaiDimensi = $kuisioner->dimensiNilai(null, $request);
         }
@@ -100,13 +104,13 @@ class LaporanCtrl extends Controller
         $qDari = $request->dari;
         $qSampai = $request->sampai;
         $respondens = Pelanggan::whereBetween(DB::raw('DATE(created_at)'), array($dari, $sampai))->get()->count();
+        $responden = Pelanggan::whereBetween(DB::raw('DATE(created_at)'), array($dari, $sampai))->get();
 
         $keterangan = $kuisioner;
         $criteria = Criteria::with(['dimensi'])->get();
         $dimensi = Dimension::with(['criteria'])->get();
         
-
-        $pdf = PDF::loadview('laporan.cetak_pernyataan', compact('criteria', 'nilai', 'qDari', 'qSampai', 'dimensi', 'nilaiDimensi', 'keterangan', 'respondens'));
+        $pdf = PDF::loadview('laporan.cetak_pernyataan', compact('criteria', 'nilai', 'qDari', 'qSampai', 'dimensi', 'nilaiDimensi', 'keterangan', 'respondens', 'responden'));
         return $pdf->stream();
     }
 

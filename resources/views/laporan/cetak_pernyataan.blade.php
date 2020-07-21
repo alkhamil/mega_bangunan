@@ -18,6 +18,10 @@
 	</div>
 	<br>
 	<br>
+	@php
+		$dari = isset($_GET['dari']) ? $_GET['dari'] : date('d M Y');   
+		$sampai = isset($_GET['sampai']) ? $_GET['sampai'] : date('d M Y');    
+	@endphp
 	<table>
 		<tr>
 			<td>Hari pencetakan</td>
@@ -56,6 +60,46 @@
 					<td>{{ $item->dimensi->name }}</td>
 					<td class="text-center">{{ $gap }}</td>
 					<td>{{ $keterangan->keterangan($gap) }}</td>
+				</tr>
+			@endforeach
+		</tbody>
+	</table>
+	<br>
+	<center><h5>Laporan Gap Perdimensi</h5></center>
+	<table class='table table-sm table-bordered'>
+		<thead class="text-center">
+			<tr>
+                <th>No</th>
+                <th>Dimensi</th>
+                <th>Nilai Gap 5</th>
+                <th>Keterangan</th>
+			</tr>
+		</thead>
+		<tbody>
+            @foreach ($dimensi as $key => $item)
+				<tr @if ($nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id] < 0) class="bg-warning" @endif>
+					<th class="text-center">{{ $key+1 }}</th>
+					<td>{{ $item->name }} ({{ $item->description }})</td>
+					<td class="text-center">{{ $nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id] }}</td>
+					<td>{{ $keterangan->keterangan($nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id]) }}</td>
+				</tr>
+			@endforeach
+		</tbody>
+	</table>
+	<br>
+	<center><h5>Daftar keluhan para pelanggan</h5></center>
+	<table class='table table-sm table-bordered'>
+		<thead class="text-center">
+			<tr>
+                <th width="80">No</th>
+                <th>Kehulan</th>
+			</tr>
+		</thead>
+		<tbody>
+            @foreach ($responden as $key => $item)
+				<tr>
+					<td>{{ $key+1 }}</td>
+					<td>{{ $item->saran }}</td>
 				</tr>
 			@endforeach
 		</tbody>

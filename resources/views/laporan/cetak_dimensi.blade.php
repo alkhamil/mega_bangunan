@@ -46,13 +46,13 @@
 		</thead>
 		<tbody>
             @foreach ($dimensi as $key => $item)
-            <tr @if ($nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id] < 0) class="bg-warning" @endif>
-                <th class="text-center">{{ $key+1 }}</th>
-                <td>{{ $item->name }} ({{ $item->description }})</td>
-                <td class="text-center">{{ $nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id] }}</td>
-                <td>{{ $keterangan->keterangan($nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id]) }}</td>
-            </tr>
-        @endforeach
+				<tr @if ($nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id] < 0) class="bg-warning" @endif>
+					<th class="text-center">{{ $key+1 }}</th>
+					<td>{{ $item->name }} ({{ $item->description }})</td>
+					<td class="text-center">{{ $nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id] }}</td>
+					<td>{{ $keterangan->keterangan($nilaiDimensi['ratakenyataan'][$item->id] - $nilaiDimensi['rataharapan'][$item->id]) }}</td>
+				</tr>
+			@endforeach
 		</tbody>
 	</table>
  
